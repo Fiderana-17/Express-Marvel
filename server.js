@@ -41,3 +41,18 @@ app.get('/characters/:id', (req, res) => {
   }
   res.json(character);
 });
+
+
+app.put('/characters/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const { name, role } = req.body;
+  const character = characters.find(c => c.id === id);
+  if (!character) {
+    return res.status(404).json({ message: 'Character not found' });
+  }
+
+  character.name = name ?? character.name;
+  character.role = role ?? character.role;
+
+  res.json(character);
+});
