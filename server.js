@@ -32,3 +32,12 @@ app.post('/characters', (req, res) => {
   characters.push(newCharacter);
   res.status(201).json(newCharacter);
 });
+
+app.get('/characters/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const character = characters.find(c => c.id === id);
+  if (!character) {
+    return res.status(404).json({ message: 'Character not found' });
+  }
+  res.json(character);
+});
