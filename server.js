@@ -56,3 +56,21 @@ app.put('/characters/:id', (req, res) => {
 
   res.json(character);
 });
+
+
+app.delete('/characters/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = characters.findIndex(c => c.id === id);
+  if (index === -1) {
+    return res.status(404).json({ message: 'Character not found' });
+  }
+
+  characters.splice(index, 1);
+  res.json({ message: 'Character deleted' });
+});
+
+
+// Lancement du serveur
+app.listen(port, () => {
+  console.log(`Serveur démarré sur http://localhost:${port}`);
+});
