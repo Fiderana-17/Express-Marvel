@@ -21,3 +21,14 @@ app.get('/characters', (req, res) => {
   res.json(characters);
 });
 
+
+app.post('/characters', (req, res) => {
+  const { name, role } = req.body;
+  const newCharacter = {
+    id: nextId++,
+    name,
+    role
+  };
+  characters.push(newCharacter);
+  res.status(201).json(newCharacter);
+});
