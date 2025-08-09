@@ -17,3 +17,7 @@ try {
 let nextId = characters.length > 0 ? Math.max(...characters.map(c => c.id)) + 1 : 1;
 
 
+app.get('/characters', (req, res) => {
+  res.json(characters);
+});
+
